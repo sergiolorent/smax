@@ -1,0 +1,112 @@
+openapi: 3.1.0
+info:
+  title: Smax
+  description: |
+    Esta API permite obtener e introducir datos acerca de los
+    usuarios y de las partidas del juego Smax.    
+  version: 1.0.0
+  
+servers:
+- url: http://127.0.0.1:3000
+
+
+paths:
+    
+  /user/register:
+    post:
+      summary: Registra un nuevo usuario
+      description: Registrar un usuario con un nombre nuevo no existente
+      requestBody:
+       required: true
+       content:
+        application/json:
+         schema:
+          properties:
+            username:
+             type: string
+            email:
+             type: string
+            password:
+             type: string
+          required:
+           - username           
+           - email
+           - password
+      responses:
+       "200":        
+         content:
+           text/plain:
+             schema:
+              type: string
+       "500":
+         content:
+           text/plain:
+             schema:
+              type: string
+              
+              
+  /user/login:
+   post:
+     summary: Inicia sesion
+     description: Inicia sesion a un usuario dentro de la aplicacion
+     requestBody:
+      required: true
+      content:
+       application/json:
+        schema:
+         properties:
+           username:
+            type: string
+           password:
+            type: string            
+         required:
+          - username
+          - password           
+     responses:
+      "200":        
+        content:
+          text/plain:
+            schema:
+             type: string
+      "500":
+        content:
+          text/plain:
+            schema:
+             type: string
+              
+              
+  /user/delete:
+   post:
+    summary: Elimina un usuario
+    description: Elimina permanentemente una cuenta de usuario
+    requestBody:
+     required: true
+     content:
+      application/json:
+       schema:
+        properties:
+         username:
+          type: string      
+         required:
+          - username          
+   responses:
+     "200":        
+       content:
+         text/plain:
+           schema:
+            type: string
+     "500":
+       content:
+         text/plain:
+           schema:
+            type: string
+        
+             
+           
+       
+            
+         
+        
+        
+  
+  

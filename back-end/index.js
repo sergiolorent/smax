@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyparser = require("body-parser");
 const app = express();
+const {router} = require("./api/routes");
 //require("dotenv").config();
 
 
@@ -11,5 +12,6 @@ app.listen(PORT, function () {
 });
 
 //app.use(bodyparser.urlencoded({extended:false}))
-app.use(bodyparser.json())
+app.use(bodyparser.json());
 app.use(express.urlencoded({extended:false}));
+app.use(router);
