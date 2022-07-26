@@ -4,7 +4,7 @@ const pool = require("../db");
 module.exports = class UserDAO{
 
     static async register(username, email, password){
-        if(!checkUser(username)){
+        if(!UserDAO.checkUser(username)){
             try {
                 await pool.query("INSERT INTO users (username, email, password) VALUES ($1, $2, $3)", [username, email, password]);
                 return true;
@@ -18,7 +18,7 @@ module.exports = class UserDAO{
     }
 
     static async login(username, password){
-        if(checkUser(username)){
+        if(UserDAO.checkUser(username)){
             try {
                 res = await pool.query("SELECT password FROM users WHERE username=($1)", [username]);
                 if (res.rows.password === password)
